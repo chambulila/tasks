@@ -7,11 +7,11 @@
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 </head>
-<body>
+<body style="background-color:  #1b3745">
     <div class="container">
         <div class="row justify-content-center mt-5 pt-5">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card mt-5 py-5" style="background-color:  #9bbdce">
                     <div class="card-header text-center">{{ __('Register') }}</div>
     
                     <div class="card-body">

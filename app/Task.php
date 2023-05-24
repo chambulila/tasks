@@ -12,6 +12,7 @@ class Task extends Model
         'description',
         'priority',
         'cartegor_id',
+        'status_id',
     ];
 
     public function cartegor()
@@ -22,5 +23,10 @@ class Task extends Model
     public function priorit()
     {
         return $this->belongsTo('App\Priorit');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
     }
 }

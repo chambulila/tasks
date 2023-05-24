@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cartegor;
-class CategorController extends Controller
+use App\Status;
+class StatusController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +13,8 @@ class CategorController extends Controller
      */
     public function index()
     {
-        $categories = Cartegor::all();
-        return view('categor.index', compact('categories'));
+        $statuses = Status::all();
+        return view('status.index', compact('statuses'));
     }
 
     /**
@@ -28,7 +24,7 @@ class CategorController extends Controller
      */
     public function create()
     {
-        return view('categor.create');
+        return view('status.create');
     }
 
     /**
@@ -42,10 +38,10 @@ class CategorController extends Controller
         $request->validate([
             'name'=>'required',
         ]);
-        $cat = new Cartegor;
-        $cat->name = $request->name;
-        $cat->save();
-        return redirect()->route('categor.index')->with('success', 'Category added successfully');
+        $sta = new Status;
+        $sta->name = $request->name;
+        $sta->save();
+        return redirect()->route('status.index')->with('success', 'Status added successfully');
     }
 
     /**
@@ -67,8 +63,8 @@ class CategorController extends Controller
      */
     public function edit($id)
     {
-        $category = Cartegor::FindOrFail($id);
-        return view('categor.edit', compact('category'));
+        $status = Status::find($id);
+        return view('status.edit', compact('status'));
     }
 
     /**
@@ -82,10 +78,10 @@ class CategorController extends Controller
     {
         $request->validate([
             'name'=>'required','string', 'unique:cartegors:name']);
-        $cat = Cartegor::FindOrFail($id);
+        $cat = Status::FindOrFail($id);
         $cat->name = $request->name;
         $cat->save();
-        return redirect()->route('categor.index')->with('updated', 'Category updated successfully');
+        return redirect()->route('status.index')->with('updated', 'Status updated successfully');
     }
 
     /**
@@ -96,8 +92,7 @@ class CategorController extends Controller
      */
     public function destroy($id)
     {
-        Howner::find($id)->delete();
-        Session::flash('Deleted', 'Category deleted successfully');
-        return response(['status' => true, 'message' => 'item deleted!']);
+        Status::find($id)->delete();
+        return back()->with('deleted', 'status deleted');
     }
 }

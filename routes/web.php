@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/task', 'TaskController');
 Route::resource('/categor', 'CategorController');
 Route::resource('/priorit', 'PrioritController');
+Route::resource('/status', 'StatusController');
+Route::get('/task-sort-category/{id}', 'TaskController@task_sort_category')->name('task-sort-category');
+Route::get('/task-sort-priority/{id}', 'TaskController@task_sort_priority')->name('task-sort-priority');

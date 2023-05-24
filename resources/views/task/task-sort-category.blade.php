@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Tasks</div>
+                    <div class="card-header text-center">Tasks</div>
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
@@ -15,13 +15,12 @@
                                     <th> Description</th>
                                     <th> Category</th>
                                     <th> Priority</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-6">
                                             <a class="btn btn-sm btn-primary" href="{{ route('task.create') }}">+ Add</a>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-6">
                                             <div class="btn-group" role="group">
                                                 <button id="dropdownId" type="button"
                                                     class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
@@ -32,21 +31,7 @@
                                                     @foreach ($category as $item)
                                                         <a class="dropdown-item"
                                                             href="{{ route('task-sort-category', $item->id) }}">{{ $item->name }}</a>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="btn-group" role="group">
-                                                <button id="dropdownId" type="button"
-                                                    class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    Sort by priority
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                                    @foreach ($priority as $prio)
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('task-sort-priority', $prio->id) }}">{{ $prio->title }}</a>
+                                                        {{-- <a class="dropdown-item" href="#">ww</a> --}}
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -63,7 +48,6 @@
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->cartegor->name }}</td>
                                 <td>{{ $task->priorit->title }}</td>
-                                <td>{{ $task->status->name }}</td>
                                 <td class="row">
                                     <div class="col-6">
                                         <a class="btn btn-warning btn-sm col-7"

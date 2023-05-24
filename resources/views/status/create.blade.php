@@ -6,11 +6,11 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header text-center">
-                    <h2 class="color-white">{{ __('Register Category') }}</h2>
+                    <h2 class="color-white">{{ __('Register Status') }}</h2>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('categor.store') }}">
+                    <form method="POST" action="{{ route('status.store') }}">
                         @if($errors->any())
                         <div class="alert-danger">
                             <ul>

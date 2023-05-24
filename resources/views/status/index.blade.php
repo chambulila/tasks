@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3>Categories</h3>
+                        <h3>Statuses</h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover">
@@ -15,27 +15,25 @@
                                     <th>ID</th>
                                     <th> Name</th>
                                     <th>Action</th>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('categor.create') }}">+ Add</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('status.create') }}">+ Add</a>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $ca)
+                                @foreach ($statuses as $st)
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
-                                        <td>{{ $ca->id }}</td>
-                                        <td>{{ $ca->name }}</td>
+                                        <td>{{ $st->id }}</td>
+                                        <td>{{ $st->name }}</td>
                                         <td class="row">
                                             <div class="col-6">
                                                 <a class="btn btn-warning btn-sm col-7"
-                                                    href="{{ route('categor.edit', $ca->id) }}">Edit</a>
+                                                    href="{{ route('status.edit', $st->id) }}">Edit</a>
                                             </div>
                                             <div class="col-6">
-                                                <form action="#" method="POST">
+                                                <form action="{{ route('status.destroy', $st->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" onclick="onDeleteInfo()"
-                                                        class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target="#deleteModel">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </div>
 
@@ -48,7 +46,7 @@
                         </table>
 
                         @if (Session::has('success'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -72,15 +70,23 @@
                             $(".alert").alert();
                         </script>
                     @endif
+                    
+                    @if (Session::has('deleted'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>{{ Session('deleted') }}</strong>
+                    </div>
 
-                        <input type="hidden" name="id" id="id" value="">
+                    <script>
+                        $(".alert").alert();
+                    </script>
+                @endif
+                     
                       
                     </div>
                 </div>
             </div>
         </div>
     @endsection
-
-    {{-- <script src="{{ asset('js/work/sweetalert2.js') }}"></script>
-    <script src="asset('js/jqueriii.min.js')"></script>
-    <script src="{{ asset('bootstrap-5.2.0-beta1-dist\js\bootstrap.min.js') }}"></script> --}}

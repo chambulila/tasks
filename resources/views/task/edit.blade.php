@@ -58,9 +58,27 @@
                     </select>
                     </div>
                    </div>
+
+                   {{-- <div class="form-group row">
+                    <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+
+                    <div class="col-md-8">
+                        <input type="text" name="description" class="form-control @error('Description') is-invalid @enderror" name="status" value="{{ $task->status }}" required autocomplete="name" autofocus>
+                    </div>
+                </div> --}}
+                   <div class="form-group row">
+                    <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+                    <div class="col-md-8">
+                        <select name="status" class="form-control">
+                        @foreach ($status as $st)
+                        <option value="{{ $st->id }}"> {{ $st->name }}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                   </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="margin-left: 50%">
+                                <button type="submit" class="btn btn-success" style="margin-left: 50%">
                                     {{ __('Update') }}
                                 </button>
                             </div>

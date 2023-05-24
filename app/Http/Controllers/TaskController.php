@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Cartegor;
 use App\Priorit;
+use App\Status;
 use Illuminate\Support\Facades\Validator;
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,11 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $category = Cartegor::all();
+        $priority = Priorit::all();
         $tasks = Task::all();
-        return view('task.index', compact('tasks'));
+        // dd($tasks);
+        return view('task.index', compact('tasks', 'category', 'priority'));
     }
 
     /**
@@ -28,8 +36,9 @@ class TaskController extends Controller
     public function create()
     {
         $category = Cartegor::all();
+        $status = Status::all();
         $priorities = Priorit::all();
-        return view('task.create', compact('category', 'priorities'));
+        return view('task.create', compact('category', 'priorities', 'status'));
     }
 
     /**
@@ -46,12 +55,14 @@ class TaskController extends Controller
             'description' => ['required', 'string'],
             'category' => ['required', 'string'],
             'priority' => ['required', 'string'],
+            'status_id' => ['required', 'string'],
         ]);
         $task = new Task;
         $task->title = $request->title;
         $task->description = $request->description;
         $task->priorit_id = $request->priority;
         $task->cartegor_id = $request->category;
+        $task->status_id = $request->status_id;
         $task->save();
 
         return redirect()->route('task.index')->with('task_saved', 'Task added!');
@@ -79,6 +90,7 @@ class TaskController extends Controller
         $task = Task::FindOrFail($id);
         $category = Cartegor::all();
         $priorities = Priorit::all();
+        // dd($task);
         return view('task.edit', compact('task', 'category', 'priorities'));
     }
 
@@ -96,8 +108,9 @@ class TaskController extends Controller
             'description' => ['required', 'string'],
             'category' => ['required', 'string'],
             'priorit_id' => ['required', 'string'],
+            'status_id' => ['required', 'string'],
         ]);
-        $d = Task::find($id)->update($request->all());
+        Task::find($id)->update($request->all());
         return redirect()->route('task.index')->with('updated', 'data updated successful');
     }
 
@@ -113,4 +126,18 @@ class TaskController extends Controller
         return back()->with('deleted', 'Task deleted successful!');
         
     }
+    public function task_sort_category($id)
+    {
+        $category = Cartegor::all();
+        $tasks = Task::where('cartegor_id', $id)->get();
+        return view('task.task-sort-category', compact('tasks', 'category'));
+    }
+    public function task_sort_priority($id)
+    {
+        $category = Cartegor::all();
+        $tasks = Task::where('priorit_id', $id)->get();
+        return view('task.task-sort-priority', compact('tasks', 'category'));
+    }
+
+    
 }

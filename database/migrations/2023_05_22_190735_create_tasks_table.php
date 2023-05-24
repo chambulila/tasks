@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->foreignId('cartegor_id')->constrained()->onDelete('cascade');
             $table->foreignId('priorit_id')->constrained()->onDelete('cascade');
+            $table->foreignId('status_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

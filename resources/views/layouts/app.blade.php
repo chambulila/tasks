@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Task') }}</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:rgb(5, 55, 24)">
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:rgb(6, 11, 28)">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -40,18 +40,10 @@
 
             <!-- Divider -->
 
-
-            <!-- Nav Item - Dashboard -->
-
-
-
             <hr class="sidebar-divider my-0">
-
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -66,6 +58,7 @@
                         <a class="collapse-item" href="{{ route('categor.index') }}">Categories</a>
                         <a class="collapse-item" href="{{ route('task.index') }}">Tasks</a>
                         <a class="collapse-item" href="{{ route('priorit.index') }}">Priorities</a>
+                        <a class="collapse-item" href="{{ route('status.index') }}">Statuses</a>
                     </div>
                 </div>
             </li>
@@ -77,13 +70,13 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column" style="background-color: rgb(126, 166, 84)">
+        <div id="content-wrapper" class="d-flex flex-column" style="background-color: rgb(203, 199, 225)">
 
             <!-- Main Content -->
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark  topbar mb-4 static-top p-4" style="background-color:rgb(5, 55, 24)">
+                <nav class="navbar navbar-expand navbar-dark  topbar mb-4 static-top p-4" style="background-color:rgb(6, 11, 28)">
                     <div class="h2 text-white" style="margin-left: 25%">TASK MANAGEMENT SYSTEM</div>
 
                     <!-- Topbar Navbar -->
